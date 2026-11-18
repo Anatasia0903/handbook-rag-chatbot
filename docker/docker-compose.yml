@@ -1,0 +1,25 @@
+# Default deployment: the container talks to the Ollama server already running on the host
+# (fast, re-uses the models you already pulled).
+#   cd docker && docker compose up --build        -> http://localhost:8501
+name: handbook-rag
+services:
+  rag:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    image: handbook-rag:latest
+    ports:
+      - "8501:8501"
+    environment:
+      OLLAMA_URL: ${OLLAMA_URL:-http://host.docker.internal:11434}
+      LLM_MODEL: ${LLM_MODEL:-qwen2.5:1.5b}
+      EMBED_MODEL: ${EMBED_MODEL:-nomic-embed-text}
+      DATA_DIR: /app/data_pdf
+      STORE_DIR: /app/vector_store
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ../source_code/data_pdf:/app/data_pdf:ro   # handbooks (mounted from the host)
+      - vector_store:/app/vector_store              # persistent ChromaDB index
+volumes:
+  vector_store:

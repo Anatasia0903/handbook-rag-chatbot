@@ -1,0 +1,48 @@
+# Fully self-contained deployment: Ollama also runs in a container (CPU), models are pulled automatically.
+#   cd docker && docker compose -f docker-compose.full.yml up --build   -> http://localhost:8501
+# The first start downloads the models (~1.5 GB); the app is usable once "model-puller" has exited.
+name: handbook-rag-full
+services:
+  ollama:
+    image: ollama/ollama:latest
+    volumes:
+      - ollama_data:/root/.ollama
+    healthcheck:
+      test: ["CMD", "ollama", "list"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+
+  model-puller:
+    image: ollama/ollama:latest
+    depends_on:
+      ollama:
+        condition: service_healthy
+    environment:
+      OLLAMA_HOST: http://ollama:11434
+    entrypoint: ["/bin/sh", "-c", "ollama pull nomic-embed-text && ollama pull qwen2.5:1.5b"]
+    restart: "no"
+
+  rag:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    image: handbook-rag:latest
+    depends_on:
+      ollama:
+        condition: service_healthy
+    ports:
+      - "8501:8501"
+    environment:
+      OLLAMA_URL: http://ollama:11434
+      LLM_MODEL: qwen2.5:1.5b
+      EMBED_MODEL: nomic-embed-text
+      DATA_DIR: /app/data_pdf
+      STORE_DIR: /app/vector_store
+    volumes:
+      - ../source_code/data_pdf:/app/data_pdf:ro
+      - vector_store:/app/vector_store
+
+volumes:
+  ollama_data:
+  vector_store:
