@@ -1,0 +1,72 @@
+﻿model,id,category,question,answer,pages_retrieved,retrieval_hit,answer_keyword_score,retrieval_s,generation_s,grade,notes
+qwen2.5:1.5b,Q01,program requirements,How many credits are required to graduate with the B.S. in Integrated Sciences?,"To graduate with the B.S. in Integrated Sciences, students must complete a total of 128 credits. This includes fulfilling the following requirements:
+
+- 2 Required foundation courses: General Chemistry and Introductory Biology (8 credits).
+- 2 Math and Computer Science courses (8 credits).
+- 6 Applied Integrated Sciences courses (24 credits), including at least four 300-level courses.
+- Capstone I and Capstone II (total 8 credits) for Honors program OR 2 applied Integrated Sciences courses (8 credits), including at least one 300-level course.","8,8,7,5,6,6",1,1.0,0.19,12.37,correct,Right number (128). Adds an unnecessary list of major requirements and omits 'at least'.
+qwen2.5:1.5b,Q02,program requirements,How many credits do the major requirements add up to?,The major requirements add up to 56 credits.,"7,2,11,8,7,8",1,1.0,0.12,11.24,correct,
+qwen2.5:1.5b,Q03,program requirements,Which two foundation courses are required for the Integrated Sciences major?,The two required foundation courses for the Integrated Sciences major are General Chemistry and Introductory Biology.,"8,8,7,8,9,14",1,1.0,0.11,14.32,correct,
+qwen2.5:1.5b,Q04,program requirements,What are the two concentrations of the Integrated Sciences major?,The Integrated Sciences major consists of two main concentrations: Environmental Science and Sustainability and Biology and Health Science.,"9,9,5,8,8,5",1,1.0,0.1,9.26,correct,
+qwen2.5:1.5b,Q05,program requirements,"If a student does the Capstone, how many applied IS courses are required and how many of them must be 300-level?","If a student does the Capstone, they will need 8 applied IS courses, including at least five 300-level courses.","9,10,7,8,10,10",1,0.0,0.15,14.06,incorrect,"Retrieval OK (both conditions in context) but model gave the NO-Capstone numbers (8 courses, five 300-level). Correct: 6 courses, at least four 300-level. Generation error: confuses two similar conditions."
+qwen2.5:1.5b,Q06,program requirements,"If a student does NOT do the Capstone, how many applied IS courses are required and how many must be 300-level?","If a student does NOT do the Capstone, they will need 8 applied IS courses, including at least five 300-level courses.","9,10,7,8,10,10",1,1.0,0.15,5.91,correct,"Same answer as Q05, so the model ignores the Capstone/no-Capstone condition and the match here is luck."
+qwen2.5:1.5b,Q07,program requirements,"Is the Capstone mandatory, and how many credits are Capstone I and II in total?",Capstone is mandatory for students pursuing the Honors program. Capstone I and Capstone II together total 8 credits.,"7,10,10,8,9,10",0,0.5,0.14,11.29,incomplete,"8 credits is right, but misses that the Capstone is optional (highly recommended). The paragraph saying 'While optional' was not in the top-6 chunks."
+qwen2.5:1.5b,Q08,academic policies,What is required to graduate with Honors in Integrated Sciences?,"To graduate with Honors in Integrated Sciences, students must complete Capstone I and Capstone II (total 8 credits) for the Honors program OR 2 applied Integrated Sciences courses (8 credits), including at least one 300-level course.","8,7,8,6,5,5",1,0.5,0.11,10.41,incorrect,Mixes Honors with major requirement #8 ('OR 2 applied courses'). Correct: complete Capstone I and II and earn an Honor pass on the Capstone.
+qwen2.5:1.5b,Q09,program requirements,How many credits is the Integrated Sciences minor and which courses does it require?,"The Integrated Sciences minor requires students to take a total of 24 credits. Specifically, it consists of:
+
+- 6 Applied Integrated Sciences courses (12 credits) including at least four 300-level courses.
+- 2 Required foundation courses: General Chemistry (8 credits) and Introductory Biology (8 credits).","8,8,7,8,5,9",1,1.0,0.11,17.26,incorrect,"Total 24 credits is right, but the breakdown is wrong (says 6 applied courses, four 300-level). Correct: 2 foundation + 1 Math/CS + 3 applied (at least two 300-level)."
+qwen2.5:1.5b,Q10,academic policies,What must a student complete before formally declaring the IS major or minor?,"To formally declare the Integrated Sciences (IS) major or minor, students must complete at least one of the two required foundational IS courses (General Chemistry or Introductory Biology).","8,10,8,10,11,2",1,1.0,0.13,12.35,correct,
+qwen2.5:1.5b,Q11,course offerings,What is the prerequisite for IS 203 Principles of Neuroscience?,The prerequisite for IS 203 Principles of Neuroscience is IS 101.,"17,13,21,14,20,17",1,0.0,0.13,18.12,correct,"Metric artifact: 'IS 101' written with a space, so keyword 'is101' not matched."
+qwen2.5:1.5b,Q12,course offerings,What are the prerequisites for IS 306 Human Physiology?,Prerequisites: IS101 and one of the following courses: IS212 or IS203,"23,24,13,25,24,17",1,1.0,0.13,20.69,correct,
+qwen2.5:1.5b,Q13,course offerings,What is the prerequisite for IS 313 Life Cycle Assessment?,The prerequisite for IS 313 Life Cycle Assessment is IS107.,"26,13,16,27,26,14",1,1.0,0.16,18.93,correct,
+qwen2.5:1.5b,Q14,course offerings,What are the prerequisites for the Biochemistry course?,The prerequisites for the Biochemistry course are IS101 and one of the following courses: IS212 or IS203.,"13,29,15,11,13,14",1,0.0,0.16,24.37,incorrect,"Gave the prerequisites of IS 306 (IS101, IS212/IS203). Correct: IS105 and IS205 (catalogue table, p.13). Table text is flattened, so rows/columns get mixed."
+qwen2.5:1.5b,Q15,course offerings,Which programming language is used in the computer lab sessions of IS 312 Biometry?,The programming language used in the computer lab sessions of IS 312 Biometry is R.,"25,26,25,13,24,22",1,0.0,0.18,19.95,correct,Metric artifact: answer 'R' is correct. Relevant sentence is split across the page 25/26 break.
+qwen2.5:1.5b,Q16,course offerings,Which IS course is cross-listed with Psychology?,IS203: Principles of neuroscience,"17,13,25,10,11,14",1,1.0,0.15,9.73,correct,
+qwen2.5:1.5b,Q17,learning outcomes,What are the four Major Learning Outcomes (MLOs) of the Integrated Sciences major?,"The four Major Learning Outcomes (MLOs) of the Integrated Sciences major are:
+
+- MLO1: Students will be able to critically analyze primary and secondary scientific research sources.
+- MLO2: Students will be able to Apply appropriate qualitative and quantitative scientific methodologies in a specific field of the natural sciences to make evidence-based and scientific conclusions.
+- MLO3: Students will be able to demonstrate foundational knowledge in the natural sciences and specialized knowledge in a focused area through effective written and oral formats.
+- MLO4: Students will be able to demonstrate ethical conduct and social responsibility in scientific research.","11,2,11,24,5,5",1,1.0,0.17,23.32,correct,Complete and faithful.
+qwen2.5:1.5b,Q18,learning outcomes,What are the Major Educational Objectives (MEOs) of the program?,"To prepare students to adopt versatile approaches and independent initiative in scientific research.
+To graduate students with the necessary skills and knowledge to succeed in industry, graduate studies, and academic research.
+To equip students with the experience and mindset to tackle global and local challenges.","5,2,24,11,26,15",1,0.5,0.15,13.23,correct,All three MEOs listed.
+qwen2.5:1.5b,Q19,program requirements,How many Core courses must students take and how many credits do they total?,Students must complete 4 Core Courses. The total credits for these courses are 4.,"7,11,8,6,10,9",0,0.5,0.13,14.12,incorrect,"4 Core courses is right, but credits are wrong ('4' instead of 16). The chunk with '(16 credits)' was not retrieved; model confused it with the 4 credits per course."
+qwen2.5:1.5b,Q20,academic policies,Which compulsory courses are required in the general curriculum?,"The compulsory courses required in the general curriculum are:
+- General Chemistry (8 credits)
+- Introductory Biology (8 credits)","2,8,8,11,6,7",0,0.0,0.13,15.43,incorrect,"Retrieval miss: the 'Compulsory courses' item (Military Training, Physical Education, Political Courses) was not retrieved; model answered with the foundation courses."
+qwen2.5:1.5b,Q21,career paths,Which universities have Integrated Sciences graduates been accepted to for graduate study?,"Integrated Sciences graduates have been accepted to graduate programs at universities and research institutes around the world, including:
+- Monash University, Australia
+- Stony Brook University, United States
+- Temple University, United States
+- University of Kentucky, United States
+- Pittsburgh University, United States
+- Florida State University, United States
+- Okinawa Institute of Science and Technology
+- University of Connecticut, United States
+- The Graduate University for Advanced Studies (SOKENDAI), Japan
+- University of Bordeaux, France
+- Arizona State University, United States
+- Nagoya University, Japan","6,6,5,5,8,8",1,1.0,0.14,18.37,correct,Complete list.
+qwen2.5:1.5b,Q22,multi-hop,I have not taken any IS course yet. Which chain of courses do I need to complete to be able to take IS 303 Advanced Organic Chemistry?,"To be able to take IS 303 Advanced Organic Chemistry, you need to complete the following courses:
+
+1. IS 105: General Chemistry
+2. IS 205: Introduction to Organic Chemistry
+
+These prerequisites ensure that you have the necessary foundational knowledge in chemistry to understand and engage with the advanced topics covered in IS 303.","23,9,18,8,8,23",0,0.0,0.17,18.88,correct,"Chain IS105 -> IS205 is right (multi-hop works). Minor error: IS205 is titled 'Organic Chemistry', not 'Introduction to Organic Chemistry'."
+qwen2.5:1.5b,Q23,table-based,Which IS courses are offered every academic year?,"Every academic year:
+- IS101
+- IS105
+- IS107
+- IS109
+- IS203
+- IS205
+- IS212
+- IS214
+- IS303
+- IS306","13,13,10,10,10,9",,,0.1,17.86,incorrect,"Lists many courses that are offered every OTHER year. Correct: IS101, IS105, Physical Chemistry, Biochemistry, IS315. Table-flattening failure."
+qwen2.5:1.5b,Q24,table-based,Which MLOs are at the Mastery level for advanced (300-level) courses?,MLO4 is at the Mastery level for advanced (300-level) courses.,"11,11,12,9,5,9",,,0.13,12.07,incorrect,Says only MLO4. Correct: MLO1 and MLO2 are Mastery at the advanced level. Table-flattening failure.
+qwen2.5:1.5b,Q25,ambiguous,Is the major hard?,"The major is hard because it requires focused major courses to develop depth and expertise in a specific field of study. The structured learning pathways provided by the major curriculum prepare students for advanced research, professional careers, or further study at the graduate level.","6,11,1,15,9,11",,,0.09,10.93,ambiguous,Ambiguous question. Model states an unsupported opinion ('hard') as fact instead of saying the handbook does not judge difficulty.
+qwen2.5:1.5b,Q26,out of scope,How much is the tuition fee for the Integrated Sciences major?,I could not find this in the handbook.,"5,8,8,1,8,9",,,0.11,11.7,correct,Correct refusal (out of scope).
+qwen2.5:1.5b,Q27,out of scope,Who is the head of the Integrated Sciences department?,I could not find this in the handbook.,"5,1,5,8,9,6",,,0.09,9.22,correct,Correct refusal (out of scope).
