@@ -1,0 +1,10 @@
+langchain-core
+langchain-text-splitters
+langchain-chroma
+langchain-ollama
+chromadb
+pymupdf
+pypdf
+rank-bm25
+numpy
+streamlit>=1.40
